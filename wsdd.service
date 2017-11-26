@@ -1,0 +1,14 @@
+[Unit]
+Description=WS-Discovery Daemon
+After=syslog.target network.target
+
+[Service]
+Type=forking
+NotifyAccess=all
+EnvironmentFile=-/etc/sysconfig/wsdd
+ExecStart=/usr/bin/wsdd -n $WSDDNAME -w $WSDDWORKGROUP
+ExecReload=/usr/bin/kill -HUP $MAINPID
+LimitCORE=infinity
+
+[Install]
+WantedBy=multi-user.target

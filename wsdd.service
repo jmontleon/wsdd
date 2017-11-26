@@ -1,11 +1,13 @@
 [Unit]
 Description=WS-Discovery Daemon
-After=syslog.target network.target
+After=syslog.target network.target etwork-online.target
+Wants=network-online.target
 
 [Service]
 Type=forking
 NotifyAccess=all
 EnvironmentFile=-/etc/sysconfig/wsdd
+ExecStartPre=/bin/sleep 30
 ExecStart=/usr/bin/wsdd -n $WSDDNAME -w $WSDDWORKGROUP
 ExecReload=/usr/bin/kill -HUP $MAINPID
 LimitCORE=infinity

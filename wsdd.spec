@@ -10,6 +10,7 @@ Source1:        wsdd
 Source2:        wsdd.service
 
 BuildRequires:	libuuid-devel
+BuildRequires:  systemd
 
 %description
 %{summary}
